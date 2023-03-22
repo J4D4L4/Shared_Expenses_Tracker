@@ -1,6 +1,7 @@
 package splitter.Objects;
 
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjuster;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,12 +37,12 @@ public class Bills {
         return bills.stream().filter(bill -> bill.date.isBefore(date) || bill.date.equals(date)).collect(Collectors.toList());
 
     }
-    public List<Bill> getBeforeExcl(LocalDate date){
-        return bills.stream().filter(bill -> bill.date.isBefore(date)).collect(Collectors.toList());
+    public List<Bill> getBeforeFirstDayOfMont(LocalDate date){
+        return bills.stream().filter(bill -> bill.date.isBefore(date.withDayOfMonth( 1 ))).collect(Collectors.toList());
     }
     public Saldo calcSaldo(Person person1, Person person2, List<Bill> billList){
-        Long person1Saldo = billList.stream().filter(bill -> bill.getFrom().name.equals(person1.name)).mapToLong(bill -> bill.getAmount()).sum();
-        Long person2Saldo = billList.stream().filter(bill -> bill.getFrom().name.equals(person2.name)).mapToLong(bill -> bill.getAmount()).sum();
+        Long person1Saldo = billList.stream().filter(bill -> bill.getFrom().name.equals(person1.name) && bill.getTo().getName().equals(person2.name)).mapToLong(bill -> bill.getAmount()).sum();
+        Long person2Saldo = billList.stream().filter(bill -> bill.getFrom().name.equals(person2.name) && bill.getTo().getName().equals(person1.name)).mapToLong(bill -> bill.getAmount()).sum();
         if (person1Saldo >= person2Saldo){
             return new Saldo(person2,person1, person1Saldo-person2Saldo);
         }

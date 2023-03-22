@@ -23,7 +23,7 @@ public class BalanceCommand extends Command{
             listBill = bills.getBeforeInc(date);
         }
         else {
-            listBill = bills.getBeforeExcl(date);
+            listBill = bills.getBeforeFirstDayOfMont(date);
         }
         List<Saldo> saldoList = getSaldoList(listBill);
         printSaldoList(saldoList);
@@ -44,12 +44,12 @@ public class BalanceCommand extends Command{
 
         try {
             if(((input[input.length-1].equals("close") || input[input.length-1].equals("open")) && input.length>=3)
-            || ((!input[input.length-1].equals("close") || !input[input.length-1].equals("open")) && input.length==2))
+            || (!((input[input.length-1].equals("close") || input[input.length-1].equals("open"))) && input.length==2))
              {
                 date = LocalDate.parse(input[0], formatter);
                 return true;
             }
-            else if( input.length == 1){
+            else if( input.length == 1 || ((input[input.length-1].equals("close") || input[input.length-1].equals("open")) && input.length==2)){
                 date = LocalDate.now();
                 return true;
             }
@@ -63,12 +63,20 @@ public class BalanceCommand extends Command{
     }
 
     public boolean trySetOption(String[] input){
-        if(input[input.length-1].contains("close")||input[input.length-1].contains("open")){
+        if(input[input.length-1].equals("close")||input[input.length-1].equals("open")){
             option = input[input.length-1];
             return true;
         }
         else if(date.equals(LocalDate.now()) && input.length == 1) {
             option = "close";
+            return true;
+        }
+        else if(!date.equals(LocalDate.now()) && input.length == 2) {
+            option = "close";
+            return true;
+        }
+        else if(date.equals(LocalDate.now()) && input.length == 2) {
+            option = input[1];
             return true;
         }
         else
@@ -78,7 +86,7 @@ public class BalanceCommand extends Command{
     public void printSaldoList(List<Saldo> saldoList){
         if(saldoList.size() != 0) {
             for (Saldo saldo : saldoList) {
-                System.out.printf("%s owes %s %d", saldo.getOws().getName(), saldo.getIsOwed().getName(), saldo.getAmount());
+                System.out.printf("%s owes %s %d%n", saldo.getOws().getName(), saldo.getIsOwed().getName(), saldo.getAmount());
             }
         }
         else

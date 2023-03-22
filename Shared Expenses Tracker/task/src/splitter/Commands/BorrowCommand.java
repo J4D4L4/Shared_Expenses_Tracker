@@ -20,7 +20,7 @@ public class BorrowCommand extends Command{
     public void execute() {
         ConcreteBillBuilder billBuilder = new ConcreteBillBuilder();
         BillDirector director = new BillDirector();
-        director.constructBill(billBuilder, to, from, amount, date);
+        director.constructBill(billBuilder,  from, to, amount, date);
         Bill bill = billBuilder.getResult();
 
 
@@ -88,12 +88,12 @@ public class BorrowCommand extends Command{
 
     public void setPersons(String[] input){
         if(input.length == 5){
-            from = persons.getOrCreatePerson(input[2]);
-            to = persons.getOrCreatePerson(input[3]);
+            from = persons.getOrCreatePerson(input[3]);
+            to = persons.getOrCreatePerson(input[2]);
         }
         else {
-            from = persons.getOrCreatePerson(input[1]);
-            to = persons.getOrCreatePerson(input[2]);
+            from = persons.getOrCreatePerson(input[2]);
+            to = persons.getOrCreatePerson(input[1]);
         }
     }
 

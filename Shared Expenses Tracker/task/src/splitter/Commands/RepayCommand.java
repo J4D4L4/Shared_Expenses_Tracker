@@ -16,7 +16,7 @@ public class RepayCommand extends Command{
     public void execute() {
         ConcreteBillBuilder billBuilder = new ConcreteBillBuilder();
         BillDirector director = new BillDirector();
-        director.constructBill(billBuilder, from, to, amount, date);
+        director.constructBill(billBuilder,  from, to,  amount, date);
         Bill bill = billBuilder.getResult();
     }
 
