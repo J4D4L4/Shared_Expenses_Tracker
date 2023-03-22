@@ -60,4 +60,15 @@ public class Persons {
         return neuePerson;
     }
 
+    public List<Person[]> getPersonPairs(){
+        List<Person[]> personPairs = new ArrayList<>();
+        for(int index =0 ; index<persons.size(); index++){
+            for(int secondIndex = index+1; secondIndex< persons.size(); secondIndex++){
+                Person[] personArray = {persons.get(index), persons.get(secondIndex)};
+                personPairs.add(personArray);
+            }
+        }
+        return  personPairs;
+    }
+
 }
