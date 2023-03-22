@@ -1,4 +1,7 @@
 package splitter.Objects;
+import splitter.Builder.BillDirector;
+import splitter.Builder.ConcreteBillBuilder;
+
 import java.util.ArrayList;
 import java.util.List;
 public class Persons {
@@ -40,6 +43,21 @@ public class Persons {
                 return persons.get(index);
         }
         return null;
+    }
+
+    public Person getOrCreatePerson(String name){
+
+        if(nameExists(name)){
+            return getWithName(name);
+        }
+        else
+            return createPerson(name);
+    }
+
+    private Person createPerson(String name){
+        Person neuePerson = new Person(name);
+        persons.add(neuePerson);
+        return neuePerson;
     }
 
 }

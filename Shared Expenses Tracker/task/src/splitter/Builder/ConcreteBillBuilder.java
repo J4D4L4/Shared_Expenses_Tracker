@@ -1,11 +1,16 @@
 package splitter.Builder;
 
 import splitter.Objects.Bill;
+import splitter.Objects.Bills;
 import splitter.Objects.Person;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class ConcreteBillBuilder implements BillBuilder {
 
     Bill bill;
+    Bills bills = Bills.getInstance();
     @Override
     public void reset() {
        bill = new Bill();
@@ -26,7 +31,13 @@ public class ConcreteBillBuilder implements BillBuilder {
         bill.setAmount(amount);
     }
 
+    @Override
+    public void setDate(LocalDate date) {
+        bill.setDate(date);
+    }
+
     public Bill getResult(){
+        bills.addBill(bill);
         return bill;
     }
 }

@@ -1,10 +1,13 @@
 package splitter.Objects;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Bill {
 
     private String id;
+    LocalDate date;
     Person from;
     Person to;
     Long amount;
@@ -41,5 +44,11 @@ public class Bill {
         return id;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
 
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
 }

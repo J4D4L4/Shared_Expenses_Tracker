@@ -48,4 +48,15 @@ class TestPersons {
         persons.addPerson(personMock);
         assertEquals(personMock, persons.getWithName("test"));
     }
+
+    @Test
+    void testgetOrCreate() {
+        Person personMock = new Person("test");
+        persons.addPerson(personMock);
+        persons.getOrCreatePerson("test2");
+        assertEquals(personMock, persons.getOrCreatePerson("test"));
+        assertEquals(2, persons.getPersons().size());
+    }
+
+
 }
