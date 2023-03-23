@@ -16,12 +16,23 @@ public class Bill {
         this.id = UUID.randomUUID().toString();
     }
 
+    public Bill(Person from, Person to, Long amount, LocalDate date){
+
+        this.id = UUID.randomUUID().toString();
+        this.from = from;
+        this.to = to;
+        this.amount = amount;
+        this.date = date;
+    }
+
     public Person getFrom() {
         return from;
     }
 
     public void setFrom(Person from) {
+
         this.from = from;
+        from.addBill(this);
     }
 
     public Person getTo() {
@@ -30,6 +41,7 @@ public class Bill {
 
     public void setTo(Person to) {
         this.to = to;
+        to.addBill(this);
     }
 
     public Long getAmount() {

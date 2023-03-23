@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class BalanceCommand extends Command{
 
     String option;
-    protected BalanceCommand() {
+    public BalanceCommand() {
         super("balance");
     }
 
@@ -33,11 +33,19 @@ public class BalanceCommand extends Command{
     @Override
     public boolean correctInput(String input) {
         String[] inputArray = input.split(" ");
-        if(trySetDate(inputArray) && trySetOption(inputArray)){
+        if(trySetDate(inputArray) && trySetOption(inputArray) && containsCommand(inputArray)){
             return true;
         }
         else
             return false;
+    }
+
+    public boolean containsCommand(String[] input){
+        for(String inputS : input){
+            if (inputS.equals("balance"))
+                    return true;
+        }
+        return false;
     }
 
     public boolean trySetDate(String[] input){
@@ -104,4 +112,15 @@ public class BalanceCommand extends Command{
         return saldoList;
     }
 
+    public String getOption() {
+        return option;
+    }
+
+    public void setOption(String option) {
+        this.option = option;
+    }
+
+    public void setDate(LocalDate date){
+        this.date = date;
+    }
 }

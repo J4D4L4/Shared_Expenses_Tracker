@@ -13,7 +13,7 @@ public abstract class Command {
     public String inputString;
     public Persons persons;
     public Bills bills;
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+    public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
     LocalDate date;
     Person from;
     Person to;
@@ -33,5 +33,31 @@ public abstract class Command {
         return scanner.nextLine();
     }
 
+    public String getInputString() {
+        return inputString;
+    }
 
+    public Persons getPersons() {
+        return persons;
+    }
+
+    public Bills getBills() {
+        return bills;
+    }
+
+    public DateTimeFormatter getFormatter() {
+        return formatter;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public Person getFrom() {
+        return from;
+    }
+
+    public Person getTo() {
+        return to;
+    }
 }

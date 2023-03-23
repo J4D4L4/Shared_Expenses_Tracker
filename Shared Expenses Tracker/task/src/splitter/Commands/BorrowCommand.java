@@ -12,7 +12,7 @@ public class BorrowCommand extends Command{
     Long amount;
 
 
-    protected BorrowCommand() {
+    public BorrowCommand() {
         super("borrow");
     }
 
@@ -97,4 +97,15 @@ public class BorrowCommand extends Command{
         }
     }
 
+    public Long getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Long amount) {
+        this.amount = amount;
+    }
+
+    public LocalDate getDate(){
+        return date;
+    }
 }

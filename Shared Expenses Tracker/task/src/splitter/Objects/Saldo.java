@@ -6,7 +6,7 @@ public class Saldo {
     Person isOwed;
     Long amount;
 
-    Saldo(Person ows, Person isOwed, Long amount){
+    public Saldo(Person ows, Person isOwed, Long amount){
         this.ows = ows;
         this.isOwed = isOwed;
         this.amount = amount;

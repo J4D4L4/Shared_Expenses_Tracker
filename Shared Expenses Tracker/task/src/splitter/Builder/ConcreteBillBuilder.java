@@ -9,8 +9,13 @@ import java.time.LocalDateTime;
 
 public class ConcreteBillBuilder implements BillBuilder {
 
-    Bill bill;
-    Bills bills = Bills.getInstance();
+    private Bill bill;
+    private final Bills bills;
+
+    public ConcreteBillBuilder() {
+        bill = new Bill();
+        bills = Bills.getInstance();
+    }
     @Override
     public void reset() {
        bill = new Bill();
