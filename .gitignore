@@ -1,0 +1,6 @@
+# Project exclude paths
+/.gradle/
+/Topics/BigInteger/Comparing numbers/out/
+/Topics/BigInteger/Comparing numbers/out/production/classes/
+/Topics/BigInteger/The smallest value/out/
+/Topics/BigInteger/The smallest value/out/production/classes/
