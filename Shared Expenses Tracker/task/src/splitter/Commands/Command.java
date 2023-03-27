@@ -15,8 +15,8 @@ public abstract class Command {
     public Bills bills;
     public DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
     LocalDate date;
-    Person from;
-    Person to;
+    String[] userInput;
+
 
     protected Command(String inputString)  {
         this.inputString = inputString;
@@ -53,11 +53,7 @@ public abstract class Command {
         return date;
     }
 
-    public Person getFrom() {
-        return from;
-    }
-
-    public Person getTo() {
-        return to;
+    public void setUserInput(String[] userInput) {
+        this.userInput = userInput;
     }
 }

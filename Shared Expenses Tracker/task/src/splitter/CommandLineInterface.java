@@ -58,6 +58,7 @@ public class CommandLineInterface {
 
     public void executeCommand(Command command, String input){
         if(command.correctInput(input)){
+            command.setUserInput(input.split(" "));
             command.execute();
         }
         else

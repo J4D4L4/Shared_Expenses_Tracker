@@ -6,7 +6,8 @@ public enum Commands {
     BORROW(new BorrowCommand()),
     EXIT(new ExitCommand()),
     HELP(new HelpCommand()),
-    REPAY(new RepayCommand());
+    REPAY(new RepayCommand()),
+    GROUP(new GroupCommand());
 
     public Command command;
     Commands(Command command){

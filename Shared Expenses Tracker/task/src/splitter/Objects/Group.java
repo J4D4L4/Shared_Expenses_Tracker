@@ -7,8 +7,10 @@ public class Group {
     List<Person> members;
     String name;
 
-    Group(String name){
+    public Group(String name){
+
         this.name = name;
+        this.members = new ArrayList<>();
     }
     Group(String name, List<Person> members){
         this.name = name;
@@ -36,5 +38,10 @@ public class Group {
 
     public void setName(String name) {
         this.name = name;
+    }
+    public void print(){
+        for(Person person : members){
+            System.out.println(person.getName());
+        }
     }
 }

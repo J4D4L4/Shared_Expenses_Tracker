@@ -3,11 +3,14 @@ package splitter.Commands;
 import splitter.Builder.BillDirector;
 import splitter.Builder.ConcreteBillBuilder;
 import splitter.Objects.Bill;
+import splitter.Objects.Person;
 
 import java.time.LocalDate;
 
 public class RepayCommand extends Command{
     Long amount;
+    Person from;
+    Person to;
     protected RepayCommand( ) {
         super("repay");
     }
@@ -89,4 +92,12 @@ public class RepayCommand extends Command{
             to = persons.getOrCreatePerson(input[2]);
         }
     }
+    public Person getFrom() {
+        return from;
+    }
+
+    public Person getTo() {
+        return to;
+    }
+
 }

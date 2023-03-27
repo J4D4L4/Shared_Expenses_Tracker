@@ -10,6 +10,8 @@ import java.time.format.DateTimeFormatter;
 
 public class BorrowCommand extends Command{
     Long amount;
+    Person from;
+    Person to;
 
 
     public BorrowCommand() {
@@ -108,4 +110,12 @@ public class BorrowCommand extends Command{
     public LocalDate getDate(){
         return date;
     }
+    public Person getFrom() {
+        return from;
+    }
+
+    public Person getTo() {
+        return to;
+    }
 }
+
