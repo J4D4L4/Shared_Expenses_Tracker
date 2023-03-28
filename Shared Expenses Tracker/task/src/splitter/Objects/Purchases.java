@@ -3,14 +3,14 @@ import java.util.ArrayList;
 import java.util.List;
 public class Purchases {
 
-    Purchases instance;
+    static Purchases instance;
     List<Purchase> purchases;
 
     Purchases(){
         purchases = new ArrayList<>();
     }
 
-    public Purchases getInstance() {
+    public static Purchases getInstance() {
 
         if(instance == null){
             instance = new Purchases();

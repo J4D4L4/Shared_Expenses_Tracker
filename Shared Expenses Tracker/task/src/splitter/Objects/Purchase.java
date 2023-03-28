@@ -4,12 +4,14 @@ public class Purchase {
     Group group;
     Person purchasedBy;
     Long amount;
+    String name;
 
 
-    public Purchase(Group group, Person purchasedBy, Long amount){
+    public Purchase(String name, Group group, Person purchasedBy, Long amount){
         this.group = group;
         this.purchasedBy = purchasedBy;
         this.amount = amount;
+        this.name = name;
     }
     public Group getGroup() {
         return group;

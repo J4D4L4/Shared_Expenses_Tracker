@@ -34,5 +34,15 @@ public class Groups {
         }
         return null;
     }
+    public boolean nameExists(String name){
+        for(Group group : groups){
+            if(group.getName().equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 }
 

@@ -7,7 +7,8 @@ public enum Commands {
     EXIT(new ExitCommand()),
     HELP(new HelpCommand()),
     REPAY(new RepayCommand()),
-    GROUP(new GroupCommand());
+    GROUP(new GroupCommand()),
+    PURCHASE(new PurchaseCommand());
 
     public Command command;
     Commands(Command command){
