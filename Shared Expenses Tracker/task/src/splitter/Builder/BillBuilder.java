@@ -10,6 +10,6 @@ public interface BillBuilder {
     void reset();
     void setFrom(Person person);
     void  setTo(Person person);
-    void setAmount(Long amount);
+    void setAmount(float amount);
     void  setDate(LocalDate date);
 }

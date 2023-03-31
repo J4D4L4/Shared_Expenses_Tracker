@@ -32,7 +32,7 @@ public class ConcreteBillBuilder implements BillBuilder {
     }
 
     @Override
-    public void setAmount(Long amount) {
+    public void setAmount(float amount) {
         bill.setAmount(amount);
     }
 

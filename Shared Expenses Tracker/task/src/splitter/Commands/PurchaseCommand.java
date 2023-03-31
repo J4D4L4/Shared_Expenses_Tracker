@@ -7,13 +7,14 @@ import java.time.LocalDate;
 
 public class PurchaseCommand extends Command{
 
-    Long amount;
+    Float amount;
     Groups groups;
     Persons persons;
     Purchases purchases;
     Group group;
     Person from;
     String name;
+
     protected PurchaseCommand( ) {
 
         super("purchase");
@@ -26,7 +27,7 @@ public class PurchaseCommand extends Command{
     public void execute() {
         setFrom(userInput);
         setName(userInput);
-        Purchase purchase = new Purchase(name, group, from, amount);
+        Purchase purchase = new Purchase(name, group, from, amount, date);
         purchases.addPurchse(purchase);
 
     }
@@ -62,11 +63,11 @@ public class PurchaseCommand extends Command{
     boolean trySetAmt(String[] input){
         try{
             if(this.date.equals(LocalDate.now())) {
-                amount = Long.parseLong(input[3]);
+                amount = Float.parseFloat(input[3]);
                 return true;
             }
             else  {
-                amount = Long.parseLong(input[4]);
+                amount = Float.parseFloat(input[4]);
                 return true;
             }
         }
@@ -84,8 +85,8 @@ public class PurchaseCommand extends Command{
                 return true;
             }
         }
-        else if(date != null){
-            groupName = input[3].replace("(", "").replace(")","");
+        else {
+            groupName = input[5].replace("(", "").replace(")","");
             if (groups.nameExists(groupName)){
                 group = groups.getByName(groupName);
                 return true;

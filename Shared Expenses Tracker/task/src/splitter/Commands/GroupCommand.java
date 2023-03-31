@@ -21,13 +21,18 @@ public class GroupCommand extends Command{
 
     @Override
     public void execute() {
-        if (option.equals("create")){
+
+        if (option.equals("create")) {
             createGroup(this.userInput);
         }
-        if (option.equals("show")){
-            Group group = groups.getByName(this.userInput[2]);
-            group.print();
+        if(groups.nameExists(userInput[2])) {
+            if (option.equals("show")) {
+                Group group = groups.getByName(this.userInput[2]);
+                group.print();
+            }
         }
+        else
+            System.out.println("Unknown group");
 
 
     }
@@ -90,7 +95,7 @@ public class GroupCommand extends Command{
     boolean checkInputShow(String[] input){
         if(checkLengthShow(input)
                 && RegExHelper.isUpperCase(input[2] )
-                && groups.getByName(input[2]) != null)
+                )
             return true;
         else
             return false;

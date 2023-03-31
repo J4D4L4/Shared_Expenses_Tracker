@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class BillDirector {
 
 
-    public void constructBill(BillBuilder builder, Person from, Person to, Long amount, LocalDate date){
+    public void constructBill(BillBuilder builder, Person from, Person to, float amount, LocalDate date){
         builder.reset();
         builder.setFrom(from);
         builder.setTo(to);

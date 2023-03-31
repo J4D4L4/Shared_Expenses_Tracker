@@ -4,13 +4,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class Bill {
+public class Bill implements Comparable<Bill>{
 
     private String id;
     LocalDate date;
     Person from;
     Person to;
-    Long amount;
+    float amount;
 
     public Bill(){
         this.id = UUID.randomUUID().toString();
@@ -44,11 +44,11 @@ public class Bill {
         to.addBill(this);
     }
 
-    public Long getAmount() {
+    public float getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(float amount) {
         this.amount = amount;
     }
 
@@ -63,4 +63,15 @@ public class Bill {
     public void setDate(LocalDate date) {
         this.date = date;
     }
+
+    @Override
+    public int compareTo(Bill otherBill) {
+        if(this.from.getName().compareTo(otherBill.from.getName()) == 0) {
+            return this.from.getName().compareTo(otherBill.from.getName());
+        }
+        else
+            return this.to.getName().compareTo(otherBill.to.getName());
+    }
+
+
 }

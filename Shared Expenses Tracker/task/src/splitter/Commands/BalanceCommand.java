@@ -5,7 +5,11 @@ import splitter.Objects.Person;
 import splitter.Objects.Persons;
 import splitter.Objects.Saldo;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.time.LocalDate;
 
@@ -92,9 +96,10 @@ public class BalanceCommand extends Command{
     }
 
     public void printSaldoList(List<Saldo> saldoList){
+        Collections.sort(saldoList);
         if(saldoList.size() != 0) {
             for (Saldo saldo : saldoList) {
-                System.out.printf("%s owes %s %d%n", saldo.getOws().getName(), saldo.getIsOwed().getName(), saldo.getAmount());
+                System.out.printf("%s owes %s %s%n", saldo.getOws().getName(), saldo.getIsOwed().getName(), saldo.getAmount());
             }
         }
         else
@@ -106,7 +111,7 @@ public class BalanceCommand extends Command{
         List<Person[]> personPairs = persons.getPersonPairs();
         for (Person[] personPair : personPairs){
             Saldo newSaldo = bills.calcSaldo(personPair[0], personPair[1],billList);
-            if(newSaldo.getAmount() != 0L)
+            if(newSaldo.getAmount() != new BigDecimal("0").setScale(2, RoundingMode.HALF_UP))
                 saldoList.add(newSaldo);
         }
         return saldoList;

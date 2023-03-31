@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class BorrowCommand extends Command{
-    Long amount;
+    float amount;
     Person from;
     Person to;
 
@@ -73,11 +73,11 @@ public class BorrowCommand extends Command{
     boolean trySetAmt(String[] input){
         try{
             if(input.length==4) {
-                amount = Long.parseLong(input[3]);
+                amount = Float.parseFloat(input[3]);
                 return true;
             }
             else if(input.length == 5) {
-                amount = Long.parseLong(input[4]);
+                amount = Float.parseFloat(input[4]);
                 return true;
             }
 
@@ -99,7 +99,7 @@ public class BorrowCommand extends Command{
         }
     }
 
-    public Long getAmount() {
+    public float getAmount() {
         return amount;
     }
 

@@ -8,7 +8,7 @@ import splitter.Objects.Person;
 import java.time.LocalDate;
 
 public class RepayCommand extends Command{
-    Long amount;
+    float amount;
     Person from;
     Person to;
     protected RepayCommand( ) {
@@ -67,11 +67,11 @@ public class RepayCommand extends Command{
     boolean trySetAmt(String[] input){
         try{
             if(input.length==4) {
-                amount = Long.parseLong(input[3]);
+                amount = Float.parseFloat(input[3]);
                 return true;
             }
             else if(input.length == 5) {
-                amount = Long.parseLong(input[4]);
+                amount = Float.parseFloat(input[4]);
                 return true;
             }
 

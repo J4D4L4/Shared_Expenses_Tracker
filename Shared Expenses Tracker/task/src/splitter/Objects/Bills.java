@@ -1,8 +1,11 @@
 package splitter.Objects;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjuster;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +25,8 @@ public class Bills {
     }
 
     public List<Bill> getBills() {
+
+        Collections.sort(bills);
         return bills;
     }
 
@@ -41,13 +46,13 @@ public class Bills {
         return bills.stream().filter(bill -> bill.getDate().isBefore(date.withDayOfMonth( 1 ))).collect(Collectors.toList());
     }
     public Saldo calcSaldo(Person person1, Person person2, List<Bill> billList){
-        Long person1Saldo = billList.stream().filter(bill -> bill.getFrom().getName().equals(person1.getName()) && bill.getTo().getName().equals(person2.getName())).mapToLong(bill -> bill.getAmount()).sum();
-        Long person2Saldo = billList.stream().filter(bill -> bill.getFrom().getName().equals(person2.getName()) && bill.getTo().getName().equals(person1.getName())).mapToLong(bill -> bill.getAmount()).sum();
+        float person1Saldo = (float) billList.stream().filter(bill -> bill.getFrom().getName().equals(person1.getName()) && bill.getTo().getName().equals(person2.getName())).mapToDouble(bill -> bill.getAmount()).sum();
+        float person2Saldo = (float) billList.stream().filter(bill -> bill.getFrom().getName().equals(person2.getName()) && bill.getTo().getName().equals(person1.getName())).mapToDouble(bill -> bill.getAmount()).sum();
         if (person1Saldo >= person2Saldo){
-            return new Saldo(person2,person1, person1Saldo-person2Saldo);
+            return new Saldo(person2,person1, new BigDecimal(person1Saldo-person2Saldo).setScale(2, RoundingMode.HALF_UP));
         }
         else {
-            return new Saldo(person1,person2, person2Saldo-person1Saldo);
+            return new Saldo(person1,person2, new BigDecimal(person2Saldo-person1Saldo).setScale(2, RoundingMode.HALF_UP));
         }
     }
 
